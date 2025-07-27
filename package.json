@@ -18,7 +18,7 @@
 		"@astrojs/tailwind": "5.1.0",
 		"@fontsource/roboto": "^5.0.12",
 		"@supabase/supabase-js": "^2.52.1",
-		"astro": "4.4.15",
+		"astro": "4.16.18",
 		"astro-expressive-code": "^0.33.4",
 		"astro-icon": "^1.1.0",
 		"form-data": "^4.0.4",
