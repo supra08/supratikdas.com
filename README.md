@@ -1,27 +1,20 @@
-<div align="center">
-  <img alt="Astro Cactus logo" src="https://github.com/chrismwilliams/astro-theme-cactus/assets/12715988/85aa0d3c-ef6a-44e2-954d-ef035b4f4315" width="70" />
-</div>
-<h1 align="center">
-  Supratik Das
-</h1>
+# Supratik Das
 
-Astro Cactus is a simple opinionated starter built with the Astro framework. Use it to create an easy-to-use blog or website.
+Personal website and blog built with Astro. A simple, fast, and accessible blog with modern features.
 
 ## Table Of Contents
 
 1. [Key Features](#key-features)
-2. [Demo](#demo-💻)
-3. [Quick start](#quick-start)
-4. [Preview](#preview)
-5. [Commands](#commands)
-6. [Configure](#configure)
-7. [Adding Posts](#adding-posts)
+2. [Quick start](#quick-start)
+3. [Commands](#commands)
+4. [Configure](#configure)
+5. [Adding Posts](#adding-posts)
    - [Frontmatter](#frontmatter)
    - [Frontmatter Snippet](#frontmatter-snippet)
-8. [Pagefind search](#pagefind-search)
-9. [Analytics](#analytics)
-10. [Deploy](#deploy)
-11. [Acknowledgment](#acknowledgment)
+6. [Pagefind search](#pagefind-search)
+7. [Analytics](#analytics)
+8. [Deploy](#deploy)
+9. [Acknowledgment](#acknowledgment)
 
 ## Key Features
 
@@ -42,29 +35,19 @@ Astro Cactus is a simple opinionated starter built with the Astro framework. Use
 - [Expressive Code](https://expressive-code.com/) source code and syntax highlighter
 - 📧 Newsletter subscription system with Supabase + Mailgun
 
-## Demo 💻
-
-Check out the [Demo](https://astro-cactus.chriswilliams.dev/), hosted on Netlify
-
 ## Quick start
 
-[Create a new repo](https://github.com/chrismwilliams/astro-theme-cactus/generate) from this template.
-
 ```bash
-# npm 7+
-npm create astro@latest -- --template chrismwilliams/astro-theme-cactus
+# Clone the repository
+git clone https://github.com/yourusername/supratikdas.com.git
+cd supratikdas.com
 
-# pnpm
-pnpm dlx create-astro --template chrismwilliams/astro-theme-cactus
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
 ```
-
-[![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/chrismwilliams/astro-theme-cactus) [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fchrismwilliams%2Fastro-theme-cactus&project-name=astro-theme-cactus)
-
-## Preview
-
-![Astro Theme Cactus in a light theme mode](https://github.com/chrismwilliams/astro-theme-cactus/assets/12715988/84c89d42-4525-4674-b10c-6d6ebdc06382)
-
-![Astro Theme Cactus in a dark theme mode](https://github.com/chrismwilliams/astro-theme-cactus/assets/12715988/e0e575e2-445f-4c2d-a812-b5b53d2d9031)
 
 ## Commands
 
