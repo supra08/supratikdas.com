@@ -1,0 +1,59 @@
+@import url('https://db.onlinewebfonts.com/c/1c6eb2519248229e6860a41985bf1827?family=UniversTE20-Thin');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root,
+	:root[data-theme="light"] {
+		color-scheme: light;
+		--theme-bg: 0deg 0% 100%; /* Pure white */
+		--theme-bg-card: 0deg 0% 100%; /* White for blog preview items */
+		--theme-link: 0deg 0% 20%; /* Dark grey */
+		--theme-text: 0deg 0% 7%; /* Black */
+		--theme-accent: 0deg 0% 20%; /* Dark grey */
+		--theme-accent-2: 0deg 0% 40%; /* Medium grey */
+		--theme-quote: 0deg 0% 60%; /* Light grey */
+	}
+
+	:root[data-theme="dark"] {
+		color-scheme: dark;
+		--theme-bg: 0deg 0% 10%; /* Deep, soft charcoal */
+		--theme-bg-card: 0deg 0% 16%; /* Slightly lighter for blog preview items */
+		--theme-link: 0deg 0% 90%; /* Light grey */
+		--theme-text: 0deg 0% 95%; /* Near white */
+		--theme-accent: 0deg 0% 60%; /* Medium grey */
+		--theme-accent-2: 0deg 0% 40%; /* Darker grey */
+		--theme-quote: 0deg 0% 50%; /* Mid grey */
+	}
+
+	html, body {
+		font-family: 'UniversTE20-Thin', 'Inter', 'Roboto', 'Helvetica Neue', Arial, 'sans-serif';
+		@apply scroll-smooth;
+	}
+
+	body {
+		@apply mx-auto flex min-h-screen max-w-3xl flex-col px-8 pt-16 font-sans text-base font-normal text-textColor antialiased;
+		background-color: hsl(var(--theme-bg));
+		letter-spacing: 0.01em;
+	}
+
+	/* Teenage Engineering style: rounded, flat, minimalist */
+	button, input, select, textarea {
+		@apply border-none outline-none shadow-none transition-all;
+	}
+
+	a {
+		@apply font-medium text-link transition-colors duration-150;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		@apply font-medium tracking-tight;
+		letter-spacing: -0.01em;
+	}
+
+	/* Navigation and UI elements */
+	nav, .nav, .menu {
+		@apply uppercase font-medium tracking-widest text-sm;
+	}
+}

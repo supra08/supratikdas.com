@@ -1,0 +1,62 @@
+---
+import SocialList from "@/components/SocialList.astro";
+import PostPreview from "@/components/blog/PostPreview.astro";
+import PageLayout from "@/layouts/Base.astro";
+import SubscribeForm from "@/components/SubscribeForm.astro";
+import { getAllPosts, sortMDByDate } from "@/utils";
+
+const MAX_POSTS = 10;
+const allPosts = await getAllPosts();
+const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+---
+
+<PageLayout meta={{ title: "Home" }}>
+	<section>
+		<h2 class="mb-4 text-xl font-semibold">Some things about me:</h2>
+		<ul class="mb-4 list-inside list-disc space-y-2">
+			<li>Have loved being on computers probably since the beginning</li>
+			<li>
+				An uncle taught me to program in C++ when I was 11. C++ graphics was intimidating, so taught
+				myself QBASIC. Built my first Pacman using that
+			</li>
+			<li>Been fiddling around with computers and RC planes</li>
+			<li>
+				Joined IIT Roorkee for my undergrad in 2017. Went to become a part of a coveted society
+				called SDSLabs
+			</li>
+			<li>
+				2018: Figured how beautiful AI can be. 2019: Figured how beautiful distributed systems can
+				be. My pursuit began to build something in that intersection
+			</li>
+			<li>2022: Founded Dashwave, a cloud platform running AI Agents to build Mobile Apps</li>
+			<li>
+				I also play guitar occasionally, having performed in school and college a handful of times.
+				I am currently (will update on the status) building a DIY rig to try British amps without
+				waking up my neighbors
+			</li>
+		</ul>
+		<SocialList />
+	</section>
+
+	<section aria-label="Blog post list" class="mt-16">
+		<h1 class="mb-6 text-3xl">Blogs</h1>
+		<ul class="space-y-2">
+			{
+				allPostsByDate.map((p) => (
+					<li class="flex flex-col gap-x-1 sm:flex-row">
+						<PostPreview post={p} />
+					</li>
+				))
+			}
+		</ul>
+	</section>
+
+	<section class="mt-16">
+		<h2 class="mb-6 text-2xl">Subscribe to Newsletter</h2>
+		<p class="mb-4 text-gray-600">
+			Stay updated with my latest posts and insights. Subscribe to receive email notifications when
+			I publish new content.
+		</p>
+		<SubscribeForm />
+	</section>
+</PageLayout>

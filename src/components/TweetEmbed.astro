@@ -1,0 +1,83 @@
+---
+interface Props {
+	url: string;
+	fallback?: string;
+}
+
+const { url, fallback } = Astro.props;
+
+// Extract tweet ID from URL
+const tweetId = url.match(/status\/(\d+)/)?.[1];
+
+if (!tweetId) {
+	throw new Error(`Invalid tweet URL: ${url}`);
+}
+
+// Try to fetch tweet data from Twitter's oEmbed API
+let tweetHtml = "";
+try {
+	const oembedUrl = `https://publish.twitter.com/oembed?url=${encodeURIComponent(url)}&theme=light&dnt=true`;
+	const response = await fetch(oembedUrl);
+	if (response.ok) {
+		const data = await response.json();
+		tweetHtml = data.html;
+	}
+} catch (error) {
+	console.error("Failed to fetch tweet embed:", error);
+}
+---
+
+<div class="my-8 flex justify-center">
+	<div class="w-full max-w-md">
+		<!-- Tweet link at the top -->
+		<div class="mb-2 text-center">
+			<a
+				href={url}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+			>
+				View on x.com
+			</a>
+		</div>
+
+		{
+			tweetHtml ? (
+				<Fragment set:html={tweetHtml} />
+			) : (
+				<div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800">
+					<div class="mb-3 flex items-center space-x-3">
+						<div class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-400">
+							<svg class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+							</svg>
+						</div>
+						<div>
+							<div class="font-semibold text-gray-900 dark:text-white">@{url.split("/")[3]}</div>
+							<div class="text-sm text-gray-500 dark:text-gray-400">Tweet</div>
+						</div>
+					</div>
+					<div class="mb-3 text-gray-700 dark:text-gray-300">
+						{fallback || `View the original tweet on Twitter`}
+					</div>
+					<a
+						href={url}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="inline-flex items-center text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300"
+					>
+						View on Twitter
+						<svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+							/>
+						</svg>
+					</a>
+				</div>
+			)
+		}
+	</div>
+</div>

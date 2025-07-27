@@ -1,0 +1,107 @@
+---
+import { createClient } from "@supabase/supabase-js";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+
+const token = Astro.url.searchParams.get("token");
+let message = "";
+let success = false;
+
+if (token) {
+	const supabaseUrl = import.meta.env.SUPABASE_URL;
+	const supabaseKey = import.meta.env.SUPABASE_KEY;
+	const supabase = createClient(supabaseUrl, supabaseKey);
+
+	try {
+		const { data, error } = await supabase
+			.from("subscribers")
+			.update({
+				unsubscribed_at: new Date().toISOString(),
+				is_active: false,
+			})
+			.eq("unsubscribe_token", token)
+			.eq("is_active", true)
+			.select();
+
+		if (error) {
+			message = "An error occurred while processing your unsubscribe request.";
+		} else if (data && data.length > 0) {
+			success = true;
+			message = "You have been successfully unsubscribed from our newsletter.";
+		} else {
+			message = "Invalid or expired unsubscribe link.";
+		}
+	} catch (err) {
+		message = "An error occurred while processing your request.";
+	}
+} else {
+	message = "No unsubscribe token provided.";
+}
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title="Unsubscribe - Supratik Das" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="container">
+				<div class="unsubscribe-content">
+					<h1>Unsubscribe</h1>
+					<div class={`message ${success ? "success" : "error"}`}>
+						{message}
+					</div>
+					{
+						success && (
+							<p>
+								We're sorry to see you go! If you change your mind, you can always
+								<a href="/">subscribe again</a> from our homepage.
+							</p>
+						)
+					}
+				</div>
+			</div>
+		</main>
+		<Footer />
+		<style>
+			.container {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 2rem;
+			}
+			.unsubscribe-content {
+				text-align: center;
+				padding: 3rem 0;
+			}
+			.unsubscribe-content h1 {
+				margin-bottom: 2rem;
+				color: #2c3e50;
+			}
+			.message {
+				padding: 1rem;
+				border-radius: 5px;
+				margin-bottom: 2rem;
+				font-size: 1.1rem;
+			}
+			.message.success {
+				background-color: #d4edda;
+				color: #155724;
+				border: 1px solid #c3e6cb;
+			}
+			.message.error {
+				background-color: #f8d7da;
+				color: #721c24;
+				border: 1px solid #f5c6cb;
+			}
+			.unsubscribe-content a {
+				color: #3498db;
+				text-decoration: none;
+			}
+			.unsubscribe-content a:hover {
+				text-decoration: underline;
+			}
+		</style>
+	</body>
+</html>

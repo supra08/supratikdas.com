@@ -1,0 +1,39 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	description: "Get in touch with Supratik Das",
+	title: "Contact",
+};
+---
+
+<PageLayout meta={meta}>
+	<div class="space-y-8">
+		<h1 class="mb-8 text-4xl font-bold text-textColor">Contact</h1>
+
+		<div class="mx-auto max-w-2xl">
+			<div class="mb-8 text-center">
+				<p class="mb-6 text-lg text-textColor">
+					Get in touch with me! Here's my contact information and details.
+				</p>
+			</div>
+
+			<!-- Gravatar Card Embed -->
+			<div class="flex justify-center">
+				<iframe
+					src="https://gravatar.com/swiftlyperson1fd96a49fe.card"
+					title="Supratik Das Gravatar Card"
+					width="415"
+					height="415"
+					style="border:0; margin:0; padding:0;"
+					loading="lazy"></iframe>
+			</div>
+
+			<div class="mt-8 text-center">
+				<p class="text-sm text-textColor/70">
+					Feel free to reach out through any of the channels shown above!
+				</p>
+			</div>
+		</div>
+	</div>
+</PageLayout>

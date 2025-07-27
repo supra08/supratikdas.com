@@ -1,0 +1,73 @@
+---
+interface Props {
+	url: string;
+	fallback?: string;
+}
+
+const { url, fallback } = Astro.props;
+
+// Extract tweet ID from URL
+const tweetId = url.match(/status\/(\d+)/)?.[1];
+
+if (!tweetId) {
+	throw new Error(`Invalid tweet URL: ${url}`);
+}
+---
+
+<div class="my-8 flex justify-center">
+	<div class="w-full max-w-md">
+		<blockquote class="twitter-tweet" data-theme="light" data-dnt="true" data-lang="en">
+			<a href={url} target="_blank" rel="noopener noreferrer">
+				{fallback || `Tweet by @${url.split("/")[3]}`}
+			</a>
+		</blockquote>
+	</div>
+</div>
+
+<script>
+	// Type declaration for Twitter widgets
+	declare global {
+		interface Window {
+			twttr?: {
+				widgets: {
+					load: () => void;
+				};
+			};
+		}
+	}
+
+	// Function to load Twitter widgets
+	function loadTwitterWidgets() {
+		// Check if script is already loaded
+		if (document.querySelector('script[src*="platform.twitter.com/widgets.js"]')) {
+			if (window.twttr && window.twttr.widgets) {
+				window.twttr.widgets.load();
+			}
+			return;
+		}
+
+		// Load the script
+		const script = document.createElement("script");
+		script.src = "https://platform.twitter.com/widgets.js";
+		script.async = true;
+		script.charset = "utf-8";
+
+		script.onload = () => {
+			// Wait a bit for the script to initialize
+			setTimeout(() => {
+				if (window.twttr && window.twttr.widgets) {
+					window.twttr.widgets.load();
+				}
+			}, 100);
+		};
+
+		document.head.appendChild(script);
+	}
+
+	// Load widgets when the page is ready
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", loadTwitterWidgets);
+	} else {
+		loadTwitterWidgets();
+	}
+</script>
