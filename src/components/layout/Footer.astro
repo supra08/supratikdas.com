@@ -7,15 +7,18 @@ const year = new Date().getFullYear();
 <footer
 	class="mt-auto flex w-full flex-col items-center justify-center gap-y-2 pb-4 pt-20 text-center align-top font-sans font-bold uppercase tracking-widest text-teBlack sm:flex-row sm:justify-between sm:text-xs"
 >
-	<div class="me-0 sm:me-4">
+	<div class="me-0 text-sm sm:me-4 sm:text-xs">
 		&copy; {siteConfig.author}
 		{year}.<span class="inline-block">&nbsp;🚀</span>
 	</div>
-	<nav aria-label="More on this site" class="flex gap-x-2 sm:gap-x-0 sm:divide-x sm:divide-teGray">
+	<nav
+		aria-label="More on this site"
+		class="flex hidden gap-x-2 sm:flex sm:gap-x-0 sm:divide-x sm:divide-teGray"
+	>
 		{
 			menuLinks.map((link) => (
 				<a
-					class="px-4 py-2 font-bold uppercase tracking-widest transition-colors sm:py-0 sm:hover:text-teOrange sm:focus:text-teBlue"
+					class="px-2 py-2 text-xs font-bold uppercase tracking-widest transition-colors sm:px-4 sm:py-0 sm:text-xs sm:hover:text-teOrange sm:focus:text-teBlue"
 					href={link.path}
 				>
 					{link.title}

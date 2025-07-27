@@ -36,6 +36,7 @@
 		@apply mx-auto flex min-h-screen max-w-3xl flex-col px-8 pt-16 font-sans text-base font-normal text-textColor antialiased;
 		background-color: hsl(var(--theme-bg));
 		letter-spacing: 0.01em;
+		overflow-x: hidden;
 	}
 
 	/* Teenage Engineering style: rounded, flat, minimalist */

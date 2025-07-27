@@ -11,7 +11,58 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 ---
 
 <PageLayout meta={{ title: "Home" }}>
-	<section>
+	<!-- Mobile: Collapsible "About Me" section with TLDR -->
+	<section class="sm:hidden">
+		<details class="group">
+			<summary class="cursor-pointer list-none">
+				<div class="flex items-center justify-between">
+					<h2 class="text-xl font-semibold">Some things about me:</h2>
+					<svg
+						class="h-5 w-5 transform transition-transform group-open:rotate-180"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+						></path>
+					</svg>
+				</div>
+				<div class="mt-2 text-sm text-textColor/70">
+					<strong>TLDR:</strong> Computer enthusiast since childhood, learned C++ at 11, built Pacman
+					in QBASIC, studied at IIT Roorkee, discovered AI & distributed systems beauty, founded Dashwave
+					in 2022, and occasionally play guitar.
+				</div>
+			</summary>
+			<div class="mt-4">
+				<ul class="list-inside list-disc space-y-2">
+					<li>Have loved being on computers probably since the beginning</li>
+					<li>
+						An uncle taught me to program in C++ when I was 11. C++ graphics was intimidating, so
+						taught myself QBASIC. Built my first Pacman using that
+					</li>
+					<li>Been fiddling around with computers and RC planes</li>
+					<li>
+						Joined IIT Roorkee for my undergrad in 2017. Went to become a part of a coveted society
+						called SDSLabs
+					</li>
+					<li>
+						2018: Figured how beautiful AI can be. 2019: Figured how beautiful distributed systems
+						can be. My pursuit began to build something in that intersection
+					</li>
+					<li>2022: Founded Dashwave, a cloud platform running AI Agents to build Mobile Apps</li>
+					<li>
+						I also play guitar occasionally, having performed in school and college a handful of
+						times. I am currently (will update on the status) building a DIY rig to try British amps
+						without waking up my neighbors
+					</li>
+				</ul>
+				<SocialList />
+			</div>
+		</details>
+	</section>
+
+	<!-- Desktop: Full "About Me" section -->
+	<section class="hidden sm:block">
 		<h2 class="mb-4 text-xl font-semibold">Some things about me:</h2>
 		<ul class="mb-4 list-inside list-disc space-y-2">
 			<li>Have loved being on computers probably since the beginning</li>
@@ -51,12 +102,5 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 		</ul>
 	</section>
 
-	<section class="mt-16">
-		<h2 class="mb-6 text-2xl">Subscribe to Newsletter</h2>
-		<p class="mb-4 text-gray-600">
-			Stay updated with my latest posts and insights. Subscribe to receive email notifications when
-			I publish new content.
-		</p>
-		<SubscribeForm />
-	</section>
+	<SubscribeForm />
 </PageLayout>
