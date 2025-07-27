@@ -33,12 +33,16 @@ export const menuLinks: Array<{ title: string; path: string }> = [
 		path: "/",
 	},
 	{
-		title: "Side Quests",
-		path: "/side-quests/",
-	},
-	{
 		title: "Blog",
 		path: "/posts/",
+	},
+	{
+		title: "Talks",
+		path: "/talks/",
+	},
+	{
+		title: "Side Quests",
+		path: "/side-quests/",
 	},
 	{
 		title: "Contact",
