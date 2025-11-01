@@ -11,7 +11,7 @@
 		"check": "astro check"
 	},
 	"dependencies": {
-		"@astrojs/check": "^0.5.9",
+		"@astrojs/check": "^0.9.4",
 		"@astrojs/mdx": "2.1.1",
 		"@astrojs/rss": "4.0.5",
 		"@astrojs/sitemap": "3.1.1",
